@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>Web flux</title>
+</head>
+<body>
+<div class="container">
+    <div class="well text-center" style="margin-top: 5px">
+        <h4> List of teams </h4>
+    </div>
+    <table class="table">
+        <tr>
+            <td>Name</td> <td>Full name</td> <td>points</td>
+        </tr>
+        <!--/*@thymesVar id="societes" type="com.ouhamza.webflux.entities.Teams"*/-->
+        <tr th:each="team:${teams}">
+            <td th:text="${team.id}"></td>
+            <td th:text="${team.name}"></td>
+            <td th:text="${team.points}"></td>
+            <td>
+                <button class="btn btn-primary btn-xs" th:attr="onclick=|onConnect(this,'${team.id}')|" >Matches</button>
+            </td>
+        </tr>
+    </table>
+    <canvas style="float: left;" id="chart" width="600" height="250"></canvas>
+    <div id="photoDiv" style="float: left; margin-left: 10px; display: none">
+        <img height="250" id="image" width="390" src="#" />
+    </div>
+</div>
+
+<script th:src="@{/smoothie/smoothie.js}"></script>
+<script th:src="@{/js/app.js}"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
